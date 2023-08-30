@@ -17,16 +17,16 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await axios.post("/api/login",user);
-            console.log("Response",response);
-            if(response?.data?.status !== 200){
+            console.log("Response",response.data);
+            if(!response?.data?.success){
                 console.log("Invalid User Name or Password");
                 toast(response?.data?.message)
                 return
             }
         router.push("/profile")
         } catch (error:any) {
-            toast.error(error.message);
-            console.log("Login Error",error.message)
+            toast.error(error?.response?.data?.message);
+            console.log("Login Error",error?.response?.data)
         }
     }
   return (

@@ -17,6 +17,7 @@ export async function POST(req:NextRequest){
         //compare password
         const isMatched = await bcryptjs.compare(password,user.password)  
         if (!isMatched){
+            console.log("*********Not Matched***********")
             return NextResponse.json({message:"invalid email or password"},{status:400});
         }    
         //create token data
